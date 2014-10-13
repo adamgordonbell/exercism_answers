@@ -1,0 +1,16 @@
+name:           Exercism
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         adam
+
+executable accumulate
+  hs-source-dirs:  accumulate
+  main-is:         accumulate_test.hs
+  build-depends:
+                   base >= 4,
+                   composition,
+                   containers,
+                   HUnit
+  ghc-options:     -Wall -ddump-splices
+  extensions:     EmptyDataDecls, FlexibleContexts, GADTs,OverloadedStrings, QuasiQuotes, TemplateHaskell,TypeFamilies
