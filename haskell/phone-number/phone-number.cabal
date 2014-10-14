@@ -1,0 +1,16 @@
+name:           phone-number
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         adam
+
+executable accumulate
+  main-is:         phone-number_test.hs
+  build-depends:
+                   base >= 4,
+                   composition,
+                   containers,
+                   parsec,
+                   HUnit
+  ghc-options:     -Wall -ddump-splices
+  extensions:     EmptyDataDecls, FlexibleContexts, GADTs,OverloadedStrings, QuasiQuotes, TemplateHaskell,TypeFamilies
