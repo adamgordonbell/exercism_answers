@@ -1,19 +1,20 @@
 module DNA (count, nucleotideCounts)
 where
 
-import qualified Data.Map as Map
-import Data.Maybe
+import qualified Data.Map.Strict as Map
+import Data.List
 
 type Count = Map.Map Char Int
 
 count :: Char -> String -> Int
-count c cs = fromMaybe (error ("invalid nucleotide " ++ show c)) (Map.lookup c (nucleotideCounts cs))
+count c cs = Map.findWithDefault err c $ nucleotideCounts cs
+  where err = error $ "invalid nucleotide " ++ show c
 
 nucleotideCounts :: String -> Count
-nucleotideCounts = foldr (accumulate 1) empty
+nucleotideCounts = foldl' (accumulate 1) empty
 
 empty :: Count
-empty = foldr (accumulate 0) Map.empty "ACGT"
+empty = foldl' (accumulate 0) Map.empty "ACGT"
 
-accumulate :: Int -> Char -> Count -> Count
-accumulate i c = Map.insertWith (+) c i
+accumulate :: Int -> Count -> Char -> Count
+accumulate i m c = Map.insertWith (+) c i m
