@@ -5,19 +5,18 @@ import Control.Arrow (second)
 import Control.Applicative ((<$>))
 import qualified Data.Map.Strict as Map
 import Data.Map.Strict(Map)
-import qualified Data.Set as Set
-import Data.Set(Set)
+import Data.List
 
-type School = Map Int (Set String)
+type School = Map Int [String]
 
 sorted :: School -> [(Int, [String])]
-sorted s = second Set.toAscList <$> Map.toList s
+sorted s = second sort <$> Map.toList s
 
 empty :: School
-empty = Map.fromList []
+empty = Map.empty
 
 add :: Int -> String -> School -> School
-add gr name = Map.insertWith Set.union gr (Set.singleton name)
+add gr name = Map.insertWith (++) gr [name] 
 
 grade :: Int -> School -> [String]
-grade gr school = Set.toAscList $ Map.findWithDefault Set.empty gr school
+grade gr school = sort $ Map.findWithDefault [] gr school
