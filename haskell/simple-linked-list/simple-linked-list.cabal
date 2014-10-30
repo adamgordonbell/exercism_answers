@@ -1,0 +1,15 @@
+name:           simple-linked-list
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         adam
+
+executable accumulate
+  main-is:         simple-linked-list_test.hs
+  build-depends:
+                   base >= 4,
+                   composition,
+                   containers,
+                   HUnit
+  ghc-options:     -Wall -ddump-splices
+  extensions:
