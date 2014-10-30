@@ -1,8 +1,11 @@
 module LinkedList where
 
-data LinkedList a = Nil |
-                    LinkedList { datum ::  a, next :: LinkedList a }
-                    deriving Show
+import qualified Data.Foldable as Fold
+
+data LinkedList a =
+  Nil
+  | LinkedList { datum ::  a, next :: LinkedList a }
+    deriving (Show, Fold.Foldable)
 
 nil :: LinkedList a
 nil = Nil
@@ -12,11 +15,10 @@ isNil Nil = True
 isNil _ = False
 
 toList :: LinkedList a -> [a]
-toList Nil = []
-toList (LinkedList a n) = a : toList n
+toList = Fold.foldr (:) []
 
 fromList :: [a] -> LinkedList a
-fromList = foldr LinkedList Nil
+fromList = Fold.foldr LinkedList Nil
 
 reverseLinkedList :: LinkedList a -> LinkedList a
 reverseLinkedList = fromList . reverse . toList

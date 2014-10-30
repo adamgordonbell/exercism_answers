@@ -12,4 +12,4 @@ executable accumulate
                    containers,
                    HUnit
   ghc-options:     -Wall -ddump-splices
-  extensions:
+  extensions: DeriveFoldable
