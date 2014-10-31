@@ -1,6 +1,7 @@
-module LinkedList where
+module LinkedList  (datum, next, nil, isNil, fromList, toList, reverseLinkedList , new)where
 
 import qualified Data.Foldable as Fold
+import Data.Foldable (toList)
 
 data LinkedList a =
   Nil
@@ -14,14 +15,11 @@ isNil :: LinkedList a -> Bool
 isNil Nil = True
 isNil _ = False
 
-toList :: LinkedList a -> [a]
-toList = Fold.foldr (:) []
-
 fromList :: [a] -> LinkedList a
-fromList = Fold.foldr LinkedList Nil
+fromList = Fold.foldr' LinkedList Nil
 
 reverseLinkedList :: LinkedList a -> LinkedList a
-reverseLinkedList = fromList . reverse . toList
+reverseLinkedList = Fold.foldl' (flip LinkedList) Nil
 
 new :: a -> LinkedList a -> LinkedList a
 new = LinkedList
