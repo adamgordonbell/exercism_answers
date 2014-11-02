@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveFoldable #-}
 module LinkedList (datum, next, nil, isNil, fromList, toList, reverseLinkedList, new) where
 
 import qualified Data.Foldable as Fold
