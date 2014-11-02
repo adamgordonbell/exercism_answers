@@ -1,0 +1,19 @@
+name:           wordcount
+version:        0.1
+cabal-version:  >=1.2
+build-type:     Simple
+author:         Adam Bell
+
+executable accumulate
+  main-is:         word-count_test.hs
+  build-depends:
+                   base >= 4,
+                   composition,
+                   containers,
+                   HUnit,
+                   -- for ghci
+                   ipprint,
+                   hscolour,
+                   pretty-show
+  ghc-options:     -Wall -ddump-splices -fdefer-type-errors
+  extensions:     EmptyDataDecls, FlexibleContexts, GADTs, TypeFamilies
