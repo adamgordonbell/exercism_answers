@@ -40,8 +40,7 @@ filter f = foldr (go f) []
         | otherwise = ys
 
 (++) :: [a] -> [a] -> [a]
-[] ++ ys = ys
-(x:xs) ++ ys = x : (xs ++ ys)
+(++) xs ys = foldr (:) ys xs
 
 concat :: [[a]] -> [a]
 concat = foldr (++) []
