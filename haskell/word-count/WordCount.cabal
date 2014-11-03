@@ -11,6 +11,7 @@ executable accumulate
                    composition,
                    containers,
                    HUnit,
+                   split,
                    -- for ghci
                    ipprint,
                    hscolour,
