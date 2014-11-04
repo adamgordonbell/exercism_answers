@@ -2,19 +2,13 @@ module WordCount (wordCount) where
 
 import Data.Map.Strict(Map, fromListWith)
 import Data.Char
+import Data.List.Split
 
 wordCount :: String -> Map String Int
 wordCount = fromListWith (+) . fmap tuple . splitWord
 
 splitWord :: String -> [String]
-splitWord = words . fmap toLower . replaceWhen f ' '
-  where f x = not (isAlphaNum x) && not (isSpace x)
+splitWord = wordsBy (not . isAlphaNum)
 
-replaceWhen :: (a -> Bool) -> a -> [a] -> [a]
-replaceWhen f d = foldr go []
-  where go y ys
-          | f y = d:ys
-          | otherwise = y:ys
-
-tuple :: a -> (a,Int)
-tuple x = (x,1)
+tuple :: String -> (String,Int)
+tuple x = (fmap toLower x,1)
